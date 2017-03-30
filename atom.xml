@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://herrjian.github.io/"/>
-  <updated>2017-03-30T20:17:01.217Z</updated>
+  <updated>2017-03-30T21:37:36.930Z</updated>
   <id>http://herrjian.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>建站日志 1</title>
+    <link href="http://herrjian.github.io/2017/03/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97-1/"/>
+    <id>http://herrjian.github.io/2017/03/30/建站日志-1/</id>
+    <published>2017-03-30T21:10:15.000Z</published>
+    <updated>2017-03-30T21:37:36.930Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一篇建站，其实作为一个非程序猿但喜欢鼓捣这些有趣的东西的时候，内心是很快乐的，但因为基础知识匮乏而导致的不断的踩雷的感觉是很受打击的。最后建站成功的喜悦又是溢于言表的。</p>
+<p>最开始是因为想学Python，然后在了解Python的过程在对树莓派产生了感兴趣，然后就不断的去找树莓派的相关资料，不小心看到了各位前辈们关于Github的描述，然后就看到了各种各样基于Github Pages的博客，于是乎顺水推舟就也想弄一个，满足一下好奇心。方方面面和各位前辈们还是要差远了，不过能建起来我已经很开心了，也会有空的话不断学习完善的。在深入挖掘这部分我觉得到建博客应该就可以打住了，之后应该就是弄些树莓派Python相关的小玩意儿课余时间开心一下。</p>
+<p>回忆建站，我看了好多帖，最开始看得是<a href="https://hsmouc.com/" target="_blank" rel="external">梦的小窝</a>的博客，那个时候就已经激发了我对建个博客的兴趣，已经那个时候就已经喜欢上了<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">NexT主题</a>感谢iissnan大大。申请了Github帐号，看了<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的Git教程</a>，虽然也是一路坎坷，但最后也还是过来了。没有一直push啊push，就是用了Hexo的deploy竟然就成功了，突然成功的那个晚上还是有点兴奋的。</p>
+<p>现在看来整个建站的过程还是挺云淡风清的，但是陆陆续续搞了两三个星期，中间还要准备考试。</p>
+<p>梦想还是要有的，比如说先把这难念的书先念完。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一篇建站，其实作为一个非程序猿但喜欢鼓捣这些有趣的东西的时候，内心是很快乐的，但因为基础知识匮乏而导致的不断的踩雷的感觉是很受打击的。最后建站成功的喜悦又是溢于言表的。&lt;/p&gt;
+&lt;p&gt;最开始是因为想学Python，然后在了解Python的过程在对树莓派产生了感兴趣，然后就
+    
+    </summary>
+    
+      <category term="建站" scheme="http://herrjian.github.io/categories/%E5%BB%BA%E7%AB%99/"/>
+    
+    
+      <category term="建站" scheme="http://herrjian.github.io/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+  </entry>
   
   <entry>
     <title>当我的朋友们一个个离开德国</title>
