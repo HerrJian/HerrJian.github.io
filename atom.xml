@@ -50,57 +50,6 @@
   </entry>
   
   <entry>
-    <title>树莓派上利用GPIO配置Homekit</title>
-    <link href="http://herrjian.github.io/2017/03/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E5%88%A9%E7%94%A8GPIO%E9%85%8D%E7%BD%AEHomekit/"/>
-    <id>http://herrjian.github.io/2017/03/31/树莓派上利用GPIO配置Homekit/</id>
-    <published>2017-03-31T13:56:38.000Z</published>
-    <updated>2017-03-31T23:32:58.213Z</updated>
-    
-    <content type="html"><![CDATA[<p>有这个心思是在买树莓派之前就有了的，但是其实现在也还没有杜邦线，我的Razpi也是zero级别的，多了无线网卡和蓝牙我觉得肯定是比原来要方便很多，但是为了仅仅是体验一下树莓派就没花太多钱，毕竟我只需要这个环境来感受一下<em>Rasbien</em>和<em>Llinux</em>以及<em>Python</em>所在的一个大的框架，说白了就是体验一下，不需要性能，但是整个小板子还是给了我不少惊喜的。<br><a id="more"></a></p>
-<p>比如说我的第一个项目（其实也不算第一个啦，第一个项目是按照树莓派官网的教程用<em>Python</em>编了一个树莓派控制摄像头的小程序，跑了一下午，后来发现对焦需要手动调整而我也没有调于是乎照片其实有点模糊就都删掉了），看这个挺有意思的，也是之前就想要做的，反正线啊继电器什么的都没到手，不如先把软件调试一下。希望自己能把学到的东西记录下来，也希望各位老师有空闲时间的教我做人。</p>
-<p>主要参考了：</p>
-<blockquote>
-<ul>
-<li><a href="http://caoyudong.com/2017/01/10/%E4%BD%BF%E7%94%A8iOS-Homekit%E6%8E%A7%E5%88%B6%E6%A0%91%E8%8E%93%E6%B4%BE/#more" title="使用iOS Homekit控制树莓派" target="_blank" rel="external">caoyudong</a></li>
-<li><a href="https://github.com/nfarina/homebridge/wiki/Running-HomeBridge-on-a-Raspberry-Pi" title="Running HomeBridge on a Raspberry Pi" target="_blank" rel="external">nfarina</a></li>
-<li><a href="https://github.com/nfarina/homebridge" title="Homebridge" target="_blank" rel="external">nfarina</a></li>
-<li><a href="https://alexbloggt.com/homebridge-installieren/" title="HomeBridge auf Raspberry Pi installieren" target="_blank" rel="external">Alexander</a></li>
-</ul>
-</blockquote>
-<h3 id="Raspbery-Pi-Zero-W"><a href="#Raspbery-Pi-Zero-W" class="headerlink" title="Raspbery Pi Zero W"></a>Raspbery Pi Zero W</h3><p>我的树莓派是Zero W，是树莓派系的新小弟，和Zero相比就是多了板载的无线网卡和低功耗蓝牙，买它不为什么，就为便宜。买来第一感觉就是小，配了个官方的盒子和摄像头，我也不准备拿它做什么厉害的项目，因为性能的确不好恭维，但也确实没那么差，看视频应该是不太合适，因为开网页都要三十几秒吧，确实是等的花都谢了。</p>
-<h3 id="Razpi-Zero-W-会遇到的问题"><a href="#Razpi-Zero-W-会遇到的问题" class="headerlink" title="Razpi Zero W 会遇到的问题"></a>Razpi Zero W 会遇到的问题</h3><p>直接按照<a href="http://caoyudong.com/2017/01/10/%E4%BD%BF%E7%94%A8iOS-Homekit%E6%8E%A7%E5%88%B6%E6%A0%91%E8%8E%93%E6%B4%BE/#more" title="使用iOS Homekit控制树莓派" target="_blank" rel="external">caoyudong</a>的教程来做是会报错的，因为他的是树莓派B型，具体几代我没看到，那B型的话肯定就不一样了，我的是Zero型的呀。我的代码是试出来的，至于说哪个真的有用，哪个没用我真的不清楚。。。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get <span class="keyword">update</span></div><div class="line">sudo apt-<span class="keyword">get</span> <span class="keyword">upgrade</span></div><div class="line">sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> python-software-properties</div></pre></td></tr></table></figure>
-<p>需要首先安装好npm，这个npm装了好久可以先去活动活动舒展舒展。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="keyword">get</span> install npm</div></pre></td></tr></table></figure></p>
-<p>npm搞定以后，按照<a href="https://alexbloggt.com/homebridge-installieren/" title="HomeBridge auf Raspberry Pi installieren" target="_blank" rel="external">Alexander</a>的第一步，需要更新C++-Compilers，说是Rasbien Jessie不用装，因为自带了，但我看了一下我的没有，就装了。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install gcc<span class="number">-4.7</span> g++<span class="number">-4.7</span></div><div class="line">g++ -v #检查下版本</div><div class="line">...</div><div class="line">gcc version <span class="number">4.9</span><span class="number">.2</span> (Raspbian <span class="number">4.9</span><span class="number">.2</span><span class="number">-10</span>)</div></pre></td></tr></table></figure></p>
-<p>然后就是我出bug的地方了，这一步该到<em>node.js</em>的安装了，如果你是ARM Cortex-A的CPU(Pi 2 Model B或者Pi 3 Model B)可以直接按照<a href="https://github.com/nfarina/homebridge/wiki/Running-HomeBridge-on-a-Raspberry-Pi" title="Running HomeBridge on a Raspberry Pi" target="_blank" rel="external">nfarina</a>的步骤继续，但如果是Pi 1的所有型号或者Zero型号的，那因为CPU是ARMv6的，所以需要按照<a href="https://alexbloggt.com/homebridge-installieren/" title="HomeBridge auf Raspberry Pi installieren" target="_blank" rel="external">Alexander</a>的方法，他在自己的文章中说明了这里可能出现的问题，分别用Raspberry 1.和Raspberry 2.来代替，这里我就把适合Zero的搬过来啦，需要Armv7的可以去<a href="https://alexbloggt.com/homebridge-installieren/" title="HomeBridge auf Raspberry Pi installieren" target="_blank" rel="external">Alexander</a><br>找对应的Raspberry 2.的代码。<br>通过这个代码可以看出自己的CPU是什么<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">uname</span> <span class="selector-tag">-a</span></div><div class="line"><span class="selector-tag">Linux</span> <span class="selector-tag">raspberrypi</span> <span class="selector-tag">4</span><span class="selector-class">.4</span><span class="selector-class">.50</span>+ <span class="selector-id">#970</span> <span class="selector-tag">Mon</span> <span class="selector-tag">Feb</span> <span class="selector-tag">20</span> <span class="selector-tag">19</span><span class="selector-pseudo">:12</span><span class="selector-pseudo">:50</span> <span class="selector-tag">GMT</span> <span class="selector-tag">2017</span> <span class="selector-tag">armv6l</span> <span class="selector-tag">GNU</span>/<span class="selector-tag">Linux</span> #这个是我的</div></pre></td></tr></table></figure></p>
-<p>我的就可以看到关键字 armv6l。</p>
-<p>以下内容经本人翻译自<a href="https://alexbloggt.com/homebridge-installieren/" title="HomeBridge auf Raspberry Pi installieren" target="_blank" rel="external">Alexander</a><br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v4.<span class="number">3.0</span>/<span class="keyword">node</span><span class="title">-v4</span>.<span class="number">3.0</span>-linux-armv6l.tar.gz</div><div class="line">tar -xvf <span class="keyword">node</span><span class="title">-v4</span>.<span class="number">3.0</span>-linux-armv6l.tar.gz <span class="comment">#解压解压且得一阵儿呢</span></div><div class="line">cd <span class="keyword">node</span><span class="title">-v4</span>.<span class="number">3.0</span>-linux-armv6l</div></pre></td></tr></table></figure></p>
-<p>然后把解压出来的内容复制到„/usr/local“:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo cp -R * /usr/<span class="keyword">local</span>/</div></pre></td></tr></table></figure></p>
-<p>目前为止都成功的话就可以把之前下载的文件删除了<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm <span class="keyword">node</span><span class="title">-v4</span>.<span class="number">3.0</span>-linux-armv6l.tar.gz </div><div class="line">rm -R <span class="keyword">node</span><span class="title">-v4</span>.<span class="number">3.0</span>-linux-armv6l/</div></pre></td></tr></table></figure></p>
-<p>继续安装别的包，是供Avahi使用的（我也不知道是什么。。。）<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="built_in">get</span> install libavahi-compat-libdnssd-<span class="built_in">dev</span></div></pre></td></tr></table></figure></p>
-<p>然后安装 Homebridge<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm <span class="keyword">install</span> -g <span class="comment">--unsafe-perm homebridge</span></div></pre></td></tr></table></figure></p>
-<p>可以运行一下：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">homebridge</span></div></pre></td></tr></table></figure></p>
-<p><em>npm install -g homebridge-gpio-wpi</em></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有这个心思是在买树莓派之前就有了的，但是其实现在也还没有杜邦线，我的Razpi也是zero级别的，多了无线网卡和蓝牙我觉得肯定是比原来要方便很多，但是为了仅仅是体验一下树莓派就没花太多钱，毕竟我只需要这个环境来感受一下&lt;em&gt;Rasbien&lt;/em&gt;和&lt;em&gt;Llinux&lt;/em&gt;以及&lt;em&gt;Python&lt;/em&gt;所在的一个大的框架，说白了就是体验一下，不需要性能，但是整个小板子还是给了我不少惊喜的。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="技术活儿" scheme="http://herrjian.github.io/categories/%E6%8A%80%E6%9C%AF%E6%B4%BB%E5%84%BF/"/>
-    
-    
-      <category term="树莓派" scheme="http://herrjian.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
-    
-      <category term="Raspberry Pi zero W" scheme="http://herrjian.github.io/tags/Raspberry-Pi-zero-W/"/>
-    
-      <category term="Homekit" scheme="http://herrjian.github.io/tags/Homekit/"/>
-    
-  </entry>
-  
-  <entry>
     <title>建站日志 1</title>
     <link href="http://herrjian.github.io/2017/03/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97-1/"/>
     <id>http://herrjian.github.io/2017/03/30/建站日志-1/</id>
