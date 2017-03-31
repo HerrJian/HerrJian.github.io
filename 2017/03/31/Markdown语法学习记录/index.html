@@ -89,16 +89,16 @@
 
 
 
-<meta name="description" content="记录一下Markdown的语法，放便以后使用。">
+<meta name="description" content="记录一下Markdown的语法，方便以后使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown语法学习记录">
 <meta property="og:url" content="http://herrjian.github.io/2017/03/31/Markdown语法学习记录/index.html">
 <meta property="og:site_name" content="Timo是条鱼">
-<meta property="og:description" content="记录一下Markdown的语法，放便以后使用。">
-<meta property="og:updated_time" content="2017-03-31T21:23:24.988Z">
+<meta property="og:description" content="记录一下Markdown的语法，方便以后使用。">
+<meta property="og:updated_time" content="2017-03-31T21:56:02.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown语法学习记录">
-<meta name="twitter:description" content="记录一下Markdown的语法，放便以后使用。">
+<meta name="twitter:description" content="记录一下Markdown的语法，方便以后使用。">
 
 
 
@@ -347,6 +347,17 @@
 
           
           
+             <span id="/2017/03/31/Markdown语法学习记录/" class="leancloud_visitors" data-flag-title="Markdown语法学习记录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -365,7 +376,7 @@
       
 
       
-        <p>记录一下Markdown的语法，放便以后使用。<br><a id="more"></a></p>
+        <p>记录一下Markdown的语法，方便以后使用。<br><a id="more"></a></p>
 <p>先把转义符\写在最前面，没有它写不来这篇日志</p>
 <h5 id="加入链接"><a href="#加入链接" class="headerlink" title="加入链接"></a>加入链接</h5><p>[链接显示的内容](链接的Link) 比如我要连接这篇讲解Markdown语法的文章<a href="https://github.com/fan2/Markdown/blob/master/Markdown%20Syntax.md" target="_blank" rel="external">链接显示的内容</a><br>还可以给链接加Title，就是鼠标放在连接上时显示的内容。<br><a href="https://github.com/fan2/Markdown/blob/master/Markdown%20Syntax.md" title="这里显示Title" target="_blank" rel="external">链接显示的内容</a></p>
 <h5 id="加粗-斜体"><a href="#加粗-斜体" class="headerlink" title="加粗 斜体"></a>加粗 斜体</h5><p>加两个星号**或下划线__表示加粗 比如<strong>加粗</strong> <strong>加粗</strong><br>加入一个星号*或一个下划线_表示斜体  <em>斜体</em> _ <em>斜体</em>_</p>
@@ -735,6 +746,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EJ1ePETLE5qXl9NQ3jjMjFg8-gzGzoHsz", "7VM5jnd4yAGOuf3llu4g9yhw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
