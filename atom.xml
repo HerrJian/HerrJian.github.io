@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://herrjian.github.io/"/>
-  <updated>2017-03-31T21:56:02.507Z</updated>
+  <updated>2017-04-02T21:30:53.304Z</updated>
   <id>http://herrjian.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo基本操作</title>
+    <link href="http://herrjian.github.io/2017/04/02/Hexo%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>http://herrjian.github.io/2017/04/02/Hexo基本操作/</id>
+    <published>2017-04-02T21:30:53.000Z</published>
+    <updated>2017-04-02T21:30:53.304Z</updated>
+    
+    <content type="html"><![CDATA[<p>慢慢的适应Hexo的写博客的方式，基本框架有了，想写的好看其实就剩Markdown和写的内容了，Hexo本身这个工具我觉得还是挺好用的至于说用的多么棒。。。我还没有那么高阶，会用的命令也就是下面的那些，但一个博客从无到有在这个框架下还是很快就可以完成的。</p>
+<h1 id="一开始要用的"><a href="#一开始要用的" class="headerlink" title="一开始要用的"></a>一开始要用的</h1><p>‘’’<br>hexo init  #初始化一个Hexo网站文件夹<br>hexo clean  #清空之前的缓存<br>hexo server  #本地预览  默认网址: <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><br>hexo –debug  #调试模式<br>‘’’</p>
+<h1 id="写博客最常用的"><a href="#写博客最常用的" class="headerlink" title="写博客最常用的"></a>写博客最常用的</h1><p>‘’’<br>hexo new “此处是文章标题”<br>hexo g  #生成静态网页的文件<br>hexo d  #部署到Github等<br>hexo publish  #发表草稿<br>‘’’</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;慢慢的适应Hexo的写博客的方式，基本框架有了，想写的好看其实就剩Markdown和写的内容了，Hexo本身这个工具我觉得还是挺好用的至于说用的多么棒。。。我还没有那么高阶，会用的命令也就是下面的那些，但一个博客从无到有在这个框架下还是很快就可以完成的。&lt;/p&gt;
+&lt;h1 i
+    
+    </summary>
+    
+      <category term="建站" scheme="http://herrjian.github.io/categories/%E5%BB%BA%E7%AB%99/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Markdown语法学习记录</title>
