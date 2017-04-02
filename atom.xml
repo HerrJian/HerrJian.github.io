@@ -44,7 +44,7 @@
     <link href="http://herrjian.github.io/2017/03/31/Markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
     <id>http://herrjian.github.io/2017/03/31/Markdown语法学习记录/</id>
     <published>2017-03-31T14:28:42.000Z</published>
-    <updated>2017-03-31T21:56:02.507Z</updated>
+    <updated>2017-04-02T21:39:45.773Z</updated>
     
     <content type="html"><![CDATA[<p>记录一下Markdown的语法，方便以后使用。<br><a id="more"></a></p>
 <p>先把转义符\写在最前面，没有它写不来这篇日志</p>
@@ -58,6 +58,8 @@
 <h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p>###### 六级标题</p>
 <h5 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h5><p>头尾各两个~~<br>~~要删除的内容~~ 比如 <del>我是需要加删除线的内容</del> </p>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>`print(此处是代码)`<br><code>print(此处是代码)</code> </p>
+<p>```（+）js或py等语言缩写可以实现语法高亮，否则就像上面那行代码一样，还挺无聊的<br>（代码块儿）<br>```</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">X = np.array([ [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>] ])</div><div class="line">y = np.array([[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>]]).T</div><div class="line">syn0 = <span class="number">2</span>*np.random.random((<span class="number">3</span>,<span class="number">4</span>)) - <span class="number">1</span></div><div class="line">syn1 = <span class="number">2</span>*np.random.random((<span class="number">4</span>,<span class="number">1</span>)) - <span class="number">1</span></div><div class="line"><span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">60000</span>):</div><div class="line">    l1 = <span class="number">1</span>/(<span class="number">1</span>+np.exp(-(np.dot(X,syn0))))</div><div class="line">    l2 = <span class="number">1</span>/(<span class="number">1</span>+np.exp(-(np.dot(l1,syn1))))</div><div class="line">    l2_delta = (y - l2)*(l2*(<span class="number">1</span>-l2))</div><div class="line">    l1_delta = l2_delta.dot(syn1.T) * (l1 * (<span class="number">1</span>-l1))</div><div class="line">    syn1 += l1.T.dot(l2_delta)</div><div class="line">    syn0 += X.T.dot(l1_delta)</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
